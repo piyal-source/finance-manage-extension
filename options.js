@@ -5,7 +5,15 @@ chrome.storage.sync.get(['limit'], function(finance) {
 })
 
 document.getElementById("btn-reset-amt").addEventListener("click", () => {
-    chrome.storage.sync.set({'spent': 0});
+    chrome.storage.sync.set({'spent': 0}, function() {
+        var notificationOptions = {
+            type: "basic",
+            iconUrl: "./icon-48.png",
+            title: "Amount spent reset successfully",
+            message: "You've reset your expenses. So, you can have a fresh start!"
+        };
+        chrome.notifications.create("resetNotification", notificationOptions);
+    });
 });
 
 document.getElementById("btn-save-limit").addEventListener("click", () => {

@@ -23,7 +23,18 @@ document.getElementById("btn-spend").addEventListener("click", () => {
             total += parseInt(newAmt.value);
         }
 
-        chrome.storage.sync.set({'spent': total});
+        chrome.storage.sync.set({'spent': total}, function() {
+            if(newAmt && total > finance.limit) {
+                var notificationOptions = {
+                    type: "basic",
+                    iconUrl: "./icon-48.png",
+                    title: "Limit exceeded!",
+                    message: "You've spent more than your budget! It is time to start saving."
+                };
+                chrome.notifications.create('limitNotification', notificationOptions);
+            }
+        });
+
         amtSpent.textContent = total;
         if(finance.limit) {
             rem.textContent = parseInt(finance.limit) - total;
