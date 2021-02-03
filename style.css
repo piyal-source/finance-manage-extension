@@ -1,5 +1,6 @@
 body {
     background-color: #bbdfc8;
+    text-align: center;
 }
 
 .heading {
@@ -9,3 +10,8 @@ body {
 h4 {
     margin-bottom: 0;
 }
+/* 
+.box-center-wrap {
+    display: flex;
+    justify-content: center;
+} */
