@@ -9,7 +9,7 @@ document.getElementById("btn-reset-amt").addEventListener("click", () => {
         var notificationOptions = {
             type: "basic",
             iconUrl: "./icon-48.png",
-            title: "Amount spent reset successfully",
+            title: "Amount reset successfully",
             message: "You've reset your expenses. So, you can have a fresh start!"
         };
         chrome.notifications.create("resetNotification", notificationOptions);

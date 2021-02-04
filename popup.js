@@ -7,7 +7,7 @@ chrome.storage.sync.get(['spent', 'limit'], function(finance) {
     amtSpent.textContent = finance.spent;
     totalLimit.textContent = finance.limit;
     if(finance.limit) {
-        rem.textContent = parseInt(finance.limit) - parseInt(finance.spent); 
+        rem.textContent = parseFloat(finance.limit) - parseFloat(finance.spent); 
     }
 });
 
@@ -16,11 +16,11 @@ document.getElementById("btn-spend").addEventListener("click", () => {
         let total = 0;
 
         if(finance.spent) {
-            total += parseInt(finance.spent);
+            total += parseFloat(finance.spent);
         }
 
         if(newAmt.value) {
-            total += parseInt(newAmt.value);
+            total += parseFloat(newAmt.value);
         }
 
         chrome.storage.sync.set({'spent': total}, function() {
@@ -37,7 +37,7 @@ document.getElementById("btn-spend").addEventListener("click", () => {
 
         amtSpent.textContent = total;
         if(finance.limit) {
-            rem.textContent = parseInt(finance.limit) - total;
+            rem.textContent = parseFloat(finance.limit) - total;
         }
        newAmt.value = '';
     });
